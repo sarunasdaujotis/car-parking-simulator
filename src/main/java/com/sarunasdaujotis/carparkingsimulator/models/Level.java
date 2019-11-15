@@ -5,11 +5,12 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-public class Level {
+public final class Level {
 	private Set<RoadTransport> parkingSpaces;
 	private int initialCapacity = 0;
 
 	private Level() {
+		//No-op; can't be called
 	}
 
 	private Level(final int initialCapacity) {
@@ -17,31 +18,45 @@ public class Level {
 		this.parkingSpaces = Collections.synchronizedSet(new HashSet<>(initialCapacity));
 	}
 
-	public void addRoadTransport(final RoadTransport roadTransport) {
+	public int findAvailable() {
+		return initialCapacity - parkingSpaces.size();
+	}
+
+	boolean findAndRemove(final String licenceNumber) {
+		Objects.requireNonNull(licenceNumber);
+		return parkingSpaces.removeIf(roadTransport -> roadTransport.getLicenceNumber().equals(licenceNumber));
+	}
+
+	void addRoadTransport(final RoadTransport roadTransport) {
 		if (atCapacity()) {
 			return;
 		}
 		parkingSpaces.add(roadTransport);
 	}
 
-	public void removeRoadTransport(final RoadTransport roadTransport) {
-		parkingSpaces.remove(roadTransport);
+	private boolean atCapacity() {
+		return initialCapacity == parkingSpaces.size();
 	}
 
-	public boolean findAndRemove(final String licenceNumber) {
-		Objects.requireNonNull(licenceNumber);
-		return parkingSpaces.removeIf(roadTransport -> roadTransport.getLicenceNumber().equals(licenceNumber));
-	}
-
-	public int findAvailable() {
-		return initialCapacity - parkingSpaces.size();
-	}
-
-	public static Level create(final int initialCapacity) {
+	static Level create(final int initialCapacity) {
 		return new Level(initialCapacity);
 	}
 
-	private boolean atCapacity() {
-		return initialCapacity == parkingSpaces.size();
+	@Override
+	public boolean equals(final Object o) {
+		if (this == o) {
+			return true;
+		}
+		if (o == null || getClass() != o.getClass()) {
+			return false;
+		}
+		final Level level = (Level) o;
+		return initialCapacity == level.initialCapacity &&
+				parkingSpaces.containsAll(level.parkingSpaces);
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(parkingSpaces, initialCapacity);
 	}
 }

@@ -2,10 +2,11 @@ package com.sarunasdaujotis.carparkingsimulator.models;
 
 import java.util.Objects;
 
-public class Car implements RoadTransport {
+public final class Car implements RoadTransport {
 	private String licenceNumber;
 
 	private Car() {
+		//No-op; can't be called
 	}
 
 	private Car(String licenceNumber) {
