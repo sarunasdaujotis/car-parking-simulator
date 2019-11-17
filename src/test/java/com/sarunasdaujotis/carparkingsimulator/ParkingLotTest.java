@@ -46,4 +46,12 @@ public class ParkingLotTest {
 		assertEquals(0, parkingLot.getLevels().get(1).findAvailable());
 	}
 
+	@Test(expected = IllegalArgumentException.class)
+	public void testAlreadyExists() {
+		final RoadTransport car = Car.create("TEST");
+
+		worldEventBus.dispatch(new TransportEnterEvent(car));
+		worldEventBus.dispatch(new TransportEnterEvent(car));
+	}
+
 }

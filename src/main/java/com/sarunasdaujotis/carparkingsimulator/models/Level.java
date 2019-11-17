@@ -31,6 +31,10 @@ public final class Level {
 		if (atCapacity()) {
 			return;
 		}
+		if (parkingSpaces.contains(roadTransport)) {
+			throw new IllegalArgumentException("Transport with licence " + roadTransport.getLicenceNumber() + " already exists");
+		}
+
 		parkingSpaces.add(roadTransport);
 	}
 
