@@ -9,4 +9,4 @@ addons:
       secure: "0a89ad66fe1ae750352908f6aaf2ef4ef6d55b2c" 
       
 script:
-  - ./gradlew sonarqube
+  - gradle sonarqube
