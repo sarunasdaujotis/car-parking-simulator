@@ -1,12 +1,12 @@
 language: java
 jdk:
   - openjdk11
-  
+
 addons:
   sonarcloud:
     organization: "sarunasdaujotis"
     token:
-      secure: "6964336fcbe30a9446ad076acffbf221333a9715" 
+      secure: "0a89ad66fe1ae750352908f6aaf2ef4ef6d55b2c" 
       
 script:
   - ./gradlew sonarqube
