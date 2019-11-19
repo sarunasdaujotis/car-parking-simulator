@@ -30,7 +30,7 @@ jacocoTestReport {
 
 sonarqube {
   properties {
-    property "sonar.projectKey", "sarunasdaujotis_car-parking-simulator"
+    property "sonar.projectKey", "sarunasdaujotis-car-parking-simulator"
   }
 }
 
