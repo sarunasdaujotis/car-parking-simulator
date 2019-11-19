@@ -1,3 +1,6 @@
 language: java
 jdk:
   - openjdk11
+after_success:
+    - mvn jacoco:report coveralls:report
+    - mvn sonar:sonar -Dsonar.organization=sarunasdaujotis -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=6964336fcbe30a9446ad076acffbf221333a9715  
