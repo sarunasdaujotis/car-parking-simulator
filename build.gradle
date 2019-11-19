@@ -1,6 +1,10 @@
 apply plugin: 'java'
 apply plugin: 'jacoco'
 
+plugins {
+  id "org.sonarqube" version "2.8"
+}
+
 group 'com.sarunasdaujotis'
 version '1.0'
 
@@ -22,6 +26,12 @@ jacocoTestReport {
         csv.enabled false
         html.destination file("${buildDir}/jacocoHtml")
     }
+}
+
+sonarqube {
+  properties {
+    property "sonar.projectKey", "sarunasdaujotis_car-parking-simulator"
+  }
 }
 
 dependencies {
