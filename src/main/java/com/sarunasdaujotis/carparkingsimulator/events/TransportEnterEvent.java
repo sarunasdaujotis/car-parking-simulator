@@ -4,7 +4,8 @@ import com.sarunasdaujotis.carparkingsimulator.events.base.Event;
 import com.sarunasdaujotis.carparkingsimulator.models.RoadTransport;
 
 public class TransportEnterEvent implements Event<RoadTransport> {
-	private RoadTransport roadTransport;
+
+	private final RoadTransport roadTransport;
 
 	public TransportEnterEvent(final RoadTransport roadTransport) {
 		this.roadTransport = roadTransport;
