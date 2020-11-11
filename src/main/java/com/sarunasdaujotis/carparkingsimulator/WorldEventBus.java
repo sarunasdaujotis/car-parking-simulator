@@ -9,7 +9,7 @@ import com.sarunasdaujotis.carparkingsimulator.events.base.Subscriber;
 
 public class WorldEventBus implements EventBus {
 
-	private List<Subscriber> subscribers = Collections.synchronizedList(new ArrayList<>());
+	private final List<Subscriber> subscribers = Collections.synchronizedList(new ArrayList<>());
 
 	@Override
 	public void register(final Subscriber subscriber) {
